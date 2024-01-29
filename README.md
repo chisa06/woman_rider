@@ -23,6 +23,7 @@
 ​
 ## 設計書
 - 後ほど作成予定
+- 実装機能リスト　https://docs.google.com/spreadsheets/d/1bbW9Ec-4oWb1bCPBImSLGfkC5mTJsLeUMTZHmTB1Qjs/edit?usp=sharing
 ​
 ## 開発環境
 - OS：Linux(CentOS)
@@ -32,5 +33,4 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- 実装機能リスト　https://docs.google.com/spreadsheets/d/1bbW9Ec-4oWb1bCPBImSLGfkC5mTJsLeUMTZHmTB1Qjs/edit?usp=sharing
 - 使用検討中
