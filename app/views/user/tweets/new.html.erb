@@ -1,0 +1,12 @@
+<div class="container mt-5 offset-2">
+  <div class="col-md-8">
+    <h3 class="mb-5">新規投稿フォーム</h3>
+    <%= form_with model: @post_image do |f| %>
+      <h6>画像</h6>
+      <%= f.file_field :image, accept: "image/*" %>
+      <h6>本文</h6>
+      <%= f.text_area :caption, class: "w-75" %><br>
+      <%= f.submit '投稿' %>
+    <% end %>
+  </div>
+</div>

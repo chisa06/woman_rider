@@ -7,25 +7,29 @@
     <%= csp_meta_tag %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="/assets/styles.css">
   </head>
 
   <body class="d-flex flex-column vh-100">
     <header class="shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-light">
+      <nav class="navbar navbar-expand-lg navbar-light bg-warning">
         <div class="container">
           <a class="navbar-brand p-3" href="/"><%= image_tag('logo.png', size: '100x50') %></a>
-          <% if user_signed_in? %>
-            <li>
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-            </li>
-          <% else %>
-            <li>
-              <%= link_to "新規登録", new_user_registration_path %>
-            </li>
-            <li>
-              <%= link_to "ログイン", new_user_session_path %>
-            </li>
-          <% end %>
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <li class="nav-item bg-dark rounded p-2 m-2">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-light" %>
+                </li>
+              <% else %>
+                <li class="nav-item bg-dark rounded p-2 m-2">
+                  <%= link_to "新規登録", new_user_registration_path, class: "text-light" %>
+                </li>
+                <li class="nav-item bg-dark rounded p-2 m-2">
+                  <%= link_to "ログイン", new_user_session_path, class: "text-light" %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
