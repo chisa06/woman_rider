@@ -1,4 +1,8 @@
 <div class="image-container">
   <%= image_tag 'bike1.jpg', class: "img-fluid" %>
-  <span class="overlay-text">about</span>
+  <div class="about">
+    <span class="about-title">About</span>
+    <span class="about-introduction">低身長でもバイクに乗りたい<br>バイクライフをより良くしたい<br>全ての女性ライダーのためのSNS</span><br>
+    <%= link_to "はじめる", new_user_registration_path, class: "btn btn-dark m-3" %>
+  </div>
 </div>
