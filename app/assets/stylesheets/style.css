@@ -22,3 +22,14 @@
     margin: 0 auto;
     width: fit-content;
 }
+
+.text-form input {
+    border: none;
+    outline: none;
+}
+
+.text-form input:focus {
+    outline: none; /* フォーカス時のアウトラインを消す */
+    border: none; /* フォーカス時の枠線を消す */
+    box-shadow: none; /* フォーカス時のボックスシャドウを消す */
+}
