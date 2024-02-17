@@ -23,12 +23,17 @@
     width: fit-content;
 }
 
-.text-form input {
-    border: none;
-    outline: none;
+.tweet-form {
+    border: 3px solid #048080;
+    margin-top: 50px;
+    padding: 20px;
 }
 
-.text-form input:focus {
+.no-resize {
+    resize: none;
+}
+
+.no-resize:focus {
     outline: none; /* フォーカス時のアウトラインを消す */
     border: none; /* フォーカス時の枠線を消す */
     box-shadow: none; /* フォーカス時のボックスシャドウを消す */

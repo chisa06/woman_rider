@@ -1,6 +1,7 @@
 class User::TweetsController < ApplicationController
   
   def index
+    @tweets = Tweet.all
     @tweet = Tweet.new
     @tweet.user_id = current_user.id
   end
@@ -8,8 +9,13 @@ class User::TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
-    @tweet.save
-    redirect_to tweets_path
+    if @tweet.save
+      flash[:notice] = 'You have created book successfully.'
+      redirect_to tweets_path
+    else
+      @tweets = Tweet.all.page(params[:page])
+      render :index
+    end
   end
   
   private
