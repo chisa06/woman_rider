@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   
   scope module: :user do
     get 'users/mypage' => 'users#show'
-    resources :tweets, only: [:index, :create]
+    resources :tweets, only: [:index, :create, :show, :destroy]
     
   end
 

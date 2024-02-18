@@ -1,5 +1,59 @@
 <!--マイページ-->
-<div class="container">
-  
-  
+<div class="container px-5 px-sm-0">
+  <div class="col-md-7">
+    <div class="tweet-form">
+      <%= form_for(@tweet) do |f| %>
+        <div class="field">
+          <%= f.text_area :content, placeholder: "投稿できます", style: "border: none; width: 100%;", class: "no-resize" %>
+        </div>
+        <div class="space-between">
+          <%= f.label :picture, class: "image-upload-button" do %>
+            <i class="far fa-image"></i>
+            <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', style: "display: none;" %>
+          <% end %>
+          <%= f.submit "投稿", class: "btn btn-dark", style: "float: right;" %>
+        </div>
+      <% end %>
+    </div>
+    <div style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px; border-radius: 10px; margin-bottom: 20px;">
+      <div class="mt-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container">
+            <ul class="navbar-nav mx-auto d-flex flex-row justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link text-center px-5" href="#" id="allTweets">つぶやき</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-center px-5" href="#" id="followingTweets">フォロー</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      
+        <% @user.tweets.each do |tweet| %>
+          <div class="tweet-container">
+            <%= link_to tweet_path(tweet.id), class: 'tweet-link' do %>
+              <div style="display: flex; align-items: center;">
+                <%= image_tag @user.get_profile_image(50,50), style: "border-radius: 50%; width: 50px; height: 50px;" %>
+                <div class="ml-3"><%= @user.username %></div>
+              </div>
+              <div class="mt-2 mb-4 ml-5"><%= tweet.content %></div>
+              <p style="text-align: right;"><%= tweet.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+<script>
+    $(document).ready(function() {
+      $('.nav-link').click(function(e) {
+        e.preventDefault();
+        $('.nav-link').removeClass('selected-link'); // すべてのリンクから選択クラスを削除
+        $(this).addClass('selected-link'); // クリックされたリンクに選択クラスを追加
+        var linkText = $(this).text(); // クリックされたリンクのテキストを取得
+        $('#tweetList').html('<p>' + linkText + 'を選択しました。</p>');
+      });
+    });
+</script>
