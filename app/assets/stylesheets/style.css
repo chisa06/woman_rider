@@ -61,5 +61,9 @@
 }
   /* フォーカス時のスタイルを追加 */
 .tweet-link:focus {
-   outline: none; /* フォーカス時の枠線を削除 */
+    outline: none; /* フォーカス時の枠線を削除 */
   }
+
+.like-count {
+    margin-left: 5px
+}

@@ -3,7 +3,7 @@ class Tweet < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
   
-  def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
+  def liked_by?(user)
+    likes.exists?(user_id: user.id)
   end
 end

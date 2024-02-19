@@ -21,7 +21,7 @@ class User::TweetsController < ApplicationController
   def destroy
     tweet = Tweet.find(params[:id])
     tweet.destroy
-    redirect_to users_mypage_path
+    redirect_to tweets_path
   end
   
   private
