@@ -1,9 +1,10 @@
 class User::UsersController < ApplicationController
 
   def show
-    @tweet = Tweet.find(params[:id])
-    @user = current_user
+    @user = User.find(params[:id])
     @tweet = Tweet.new
     @tweets = @user.tweets
   end
+  
+  
 end
