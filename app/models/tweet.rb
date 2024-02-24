@@ -6,4 +6,18 @@ class Tweet < ApplicationRecord
   def liked_by?(user)
     likes.exists?(user_id: user.id)
   end
+  
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @tweet = Tweet.where("content LIKE?","#{word}")
+    elsif search == "forward_match"
+      @tweet = Tweet.where("content LIKE?","#{word}")
+    elsif search == "backward_match"
+      @tweet = Tweet.where("content LIKE?","#{word}")
+    elsif search == "partial_match"
+      @tweet = Tweet.where("content LIKE?","#{word}")
+    else
+      @tweet = Tweet.all
+    end
+  end
 end
