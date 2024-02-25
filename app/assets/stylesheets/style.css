@@ -70,3 +70,8 @@
 .like-count {
     margin-left: 5px
 }
+
+.profile_icon {
+    width: 50px;
+    text-align: center
+}
