@@ -2,6 +2,9 @@
     position: relative;
     display: inline-block;
 }
+.nav-item {
+    list-style: none;
+}
 
 .about {
     position: absolute;
