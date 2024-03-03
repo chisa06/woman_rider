@@ -19,8 +19,7 @@
               </div>
               <% else %>
               <!-- フォローボタンとDMボタンを表示する -->
-                <%= button_to "Follow", followings_path(@user), method: :post %>
-  
+                <%= render "user/relationships/btn", user: @user, options: { class: ""} %>
               <% end %>
             </div>
         </div>

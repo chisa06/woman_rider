@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   root to: 'homes#top'
+  get "search" => "searches#search"
   
   # 管理者用
   devise_for :admin, skip: [:registrations ], controllers: {
@@ -20,13 +21,16 @@ Rails.application.routes.draw do
       resources :comments, only: [:create]
     end
     
-    resource :relationships, only: [:create, :destroy]
-  	  get "followings" => "relationships#followings", as: "followings"
-  	  get "followers" => "relationships#followers", as: "followers"
-  	  get "search" => "searches#search"
+    resources :relationships, only: [:create, :destroy], as: 'user_relationships' do
+      collection do
+  	    get "followings", action: :followings, as: "followings"
+        get "followers", action: :followers, as: "followers"
+  	  end
+  	end
     
     resources :direct_messages, only: [:create]
     resources :rooms, only: [:create, :show]
+    	  
   end
 
 end
