@@ -29,6 +29,11 @@ class User::TweetsController < ApplicationController
     redirect_to tweets_path
   end
   
+  def following_tweets
+    @tweets = current_user.following_tweets # フォローしているユーザーのツイートを取得するメソッ@following_tweets = current_user.following_tweets
+    render partial: 'tweets/following_tweets', locals: { tweets: @following_tweets }
+  end
+  
   private
   
   def tweet_params
