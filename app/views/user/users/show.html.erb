@@ -125,13 +125,21 @@
   </div>
 </div>
 <script>
-    $(document).ready(function() {
-      $('.nav-link').click(function(e) {
-        e.preventDefault();
-        $('.nav-link').removeClass('selected-link'); // すべてのリンクから選択クラスを削除
-        $(this).addClass('selected-link'); // クリックされたリンクに選択クラスを追加
-        var linkText = $(this).text(); // クリックされたリンクのテキストを取得
-        $('#tweetList').html('<p>' + linkText + 'を選択しました。</p>');
-      });
+  $(document).ready(function() {
+    $('#allTweets').click(function(e) {
+      e.preventDefault();
+      $('.nav-link').removeClass('selected-link'); // すべてのリンクから選択クラスを削除
+      $(this).addClass('selected-link'); // クリックされたリンクに選択クラスを追加
+      $('#followingTweetsContent').hide(); // フォローのコンテンツを非表示にする
+      $('#allTweetsContent').show(); // つぶやきのコンテンツを表示する
     });
+
+    $('#followingTweets').click(function(e) {
+      e.preventDefault();
+      $('.nav-link').removeClass('selected-link'); // すべてのリンクから選択クラスを削除
+      $(this).addClass('selected-link'); // クリックされたリンクに選択クラスを追加
+      $('#allTweetsContent').hide(); // つぶやきのコンテンツを非表示にする
+      $('#followingTweetsContent').show(); // フォローのコンテンツを表示する
+    });
+  });
 </script>

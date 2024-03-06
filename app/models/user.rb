@@ -14,6 +14,9 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_many :relationships, foreign_key: :follower_id
+  has_many :following_users, through: :relationships, source: :followed
+
   
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -47,5 +50,9 @@ class User < ApplicationRecord
     else
       @user = User.all
     end
+  end
+  
+  def following_tweets
+    Tweet.where(user_id: following_users.pluck(:id))
   end
 end

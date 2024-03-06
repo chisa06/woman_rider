@@ -3,9 +3,9 @@ class User::TweetsController < ApplicationController
   def index
     @tweets = Tweet.all
     @tweet = Tweet.new
-    @tweet.user_id = current_user.id
+    @tweet.user_id = current_user.id if current_user
   end
-  
+
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
@@ -17,27 +17,27 @@ class User::TweetsController < ApplicationController
       render :index
     end
   end
-  
+
   def show
     @tweet = Tweet.find(params[:id])
     @comment = Comment.new
   end
-  
+
   def destroy
     tweet = Tweet.find(params[:id])
     tweet.destroy
     redirect_to tweets_path
   end
-  
+
   def following_tweets
-    @tweets = current_user.following_tweets # フォローしているユーザーのツイートを取得するメソッ@following_tweets = current_user.following_tweets
-    render partial: 'tweets/following_tweets', locals: { tweets: @following_tweets }
+    @following_users = current_user.following_users
+    @following_tweets = Tweet.where(user_id: @following_users.pluck(:id))
   end
-  
+
   private
-  
+
   def tweet_params
-    params.require(:tweet).permit(:content, :image, :user_id, )
+    params.require(:tweet).permit(:content, :image, :user_id)
   end
   
 end
