@@ -124,7 +124,7 @@
     </div>
   </div>
 </div>
-<script>
+<<script>
   $(document).ready(function() {
     $('#allTweets').click(function(e) {
       e.preventDefault();
@@ -141,5 +141,10 @@
       $('#allTweetsContent').hide(); // つぶやきのコンテンツを非表示にする
       $('#followingTweetsContent').show(); // フォローのコンテンツを表示する
     });
+
+    // 以下の部分を追加
+    // 初期表示では「つぶやき」が選択されているようにする
+    $('#allTweets').addClass('selected-link');
+    $('#followingTweetsContent').hide(); // 初期表示ではフォローツイートを非表示にする
   });
 </script>

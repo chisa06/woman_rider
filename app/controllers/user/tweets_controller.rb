@@ -4,6 +4,11 @@ class User::TweetsController < ApplicationController
     @tweets = Tweet.all
     @tweet = Tweet.new
     @tweet.user_id = current_user.id if current_user
+    
+    # following_tweetsメソッドを呼び出して結果をログに出力
+    @following_tweets = following_tweets
+
+    
   end
 
   def create
