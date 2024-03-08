@@ -48,58 +48,22 @@
             <div class="container">
               <ul class="navbar-nav mx-auto d-flex flex-row justify-content-center">
                 <li class="nav-item">
-                  <a class="nav-link text-center px-5" href="#" id="allTweets">つぶやき</a>
+                  <a class="nav-link text-center px-5" href="#" id="userTweets">つぶやき</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-center px-5" href="#" id="followingTweets">フォロー</a>
+                  <a class="nav-link text-center px-5" href="#" id="likeTweets">いいね</a>
                 </li>
               </ul>
             </div>
           </nav>
           
-          <div id="allTweetsContent" style="display: none;">
-            <% @user.tweets.each do |tweet| %>
-              <div class="tweet-container">
-                <%= link_to tweet_path(tweet.id), class: 'tweet-link' do %>
-                  <div style="display: flex; align-items: center;">
-                    <%= image_tag @user.get_profile_image(50,50), style: "border-radius: 50%; width: 50px; height: 50px;" %>
-                    <div class="ml-3"><%= @user.username %></div>
-                  </div>
-                  <div class="mt-2 mb-4 ml-5"><%= tweet.content %></div>
-                  <div style="display: flex; justify-content: flex-start;">
-                    <div>
-                      <% if tweet.liked_by?(current_user) %>
-                        <p>
-                          <%= link_to tweet_like_path(tweet), method: :delete do %>
-                            <i class="fa-solid fa-heart"></i>
-                            <span class="like-count"><%= tweet.likes.count %></span>
-                          <% end %>
-                        </p>
-                        <% else %>
-                        <p>
-                          <%= link_to tweet_like_path(tweet), method: :post do %>
-                            <i class="fa-regular fa-heart"></i>
-                            <span class="like-count"><%= tweet.likes.count %></span> 
-                          <% end %>
-                        </p>
-                      <% end %>
-                    </div>
-                    <div class="mx-3"><span>|</span></div>
-                    <div>
-                      <%= link_to tweet_path(tweet.id) do %>
-                        <i class="fa-regular fa-comment-dots"></i>
-                        <span class="comment-count"><%= tweet.comments.count %></span>
-                      <% end %>
-                    </div>
-                    <div style="margin-left: auto;">
-                      <span class="tweet-date">
-                        <%= tweet.created_at.strftime("%Y/%m/%d %H:%M") %>
-                      </span>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            <% end %>
+          <div id="tweetList">
+            <div id="userTweetsContent">
+              <%= render 'user/users/user_tweets', tweets: @tweets %>
+            </div>
+            <div id="likeTweetsContent">
+              <%= render 'user/users/like_tweets', tweets: @tweets %>
+            </div>
           </div>
         </div>
       </div>
@@ -124,27 +88,27 @@
     </div>
   </div>
 </div>
-<<script>
+<script>
   $(document).ready(function() {
-    $('#allTweets').click(function(e) {
+    $('#userTweets').click(function(e) {
       e.preventDefault();
       $('.nav-link').removeClass('selected-link'); // すべてのリンクから選択クラスを削除
       $(this).addClass('selected-link'); // クリックされたリンクに選択クラスを追加
       $('#followingTweetsContent').hide(); // フォローのコンテンツを非表示にする
-      $('#allTweetsContent').show(); // つぶやきのコンテンツを表示する
+      $('#userTweetsContent').show(); // つぶやきのコンテンツを表示する
     });
 
-    $('#followingTweets').click(function(e) {
+    $('#likeTweets').click(function(e) {
       e.preventDefault();
       $('.nav-link').removeClass('selected-link'); // すべてのリンクから選択クラスを削除
       $(this).addClass('selected-link'); // クリックされたリンクに選択クラスを追加
-      $('#allTweetsContent').hide(); // つぶやきのコンテンツを非表示にする
-      $('#followingTweetsContent').show(); // フォローのコンテンツを表示する
+      $('#userTweetsContent').hide(); // つぶやきのコンテンツを非表示にする
+      $('#likeTweetsContent').show(); // フォローのコンテンツを表示する
     });
 
     // 以下の部分を追加
     // 初期表示では「つぶやき」が選択されているようにする
-    $('#allTweets').addClass('selected-link');
-    $('#followingTweetsContent').hide(); // 初期表示ではフォローツイートを非表示にする
+    $('#userTweets').addClass('selected-link');
+    $('#likeTweetsContent').hide(); // 初期表示ではフォローツイートを非表示にする
   });
 </script>

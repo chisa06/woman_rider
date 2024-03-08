@@ -4,6 +4,7 @@ class User::UsersController < ApplicationController
     @user = User.find(params[:id])
     @tweet = Tweet.new
     @tweets = @user.tweets
+    @liked_tweets = @user.likes.map(&:tweet)
     
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)

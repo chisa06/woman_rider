@@ -38,6 +38,10 @@ class User::TweetsController < ApplicationController
     @following_users = current_user.following_users
     @following_tweets = Tweet.where(user_id: @following_users.pluck(:id))
   end
+  
+  def liked_tweets
+    @liked_tweets = current_user.likes.map(&:tweet)
+  end
 
   private
 
