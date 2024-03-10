@@ -5,6 +5,8 @@ class User::UsersController < ApplicationController
     @tweet = Tweet.new
     @tweets = @user.tweets
     @liked_tweets = @user.likes.map(&:tweet)
+    @following_users = @user.following_users
+    @followers = @user.followers
     
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
@@ -26,5 +28,14 @@ class User::UsersController < ApplicationController
     end
   end
   
+  def following
+    @user = current_user # ユーザー取得
+    @following_users = @user.following # フォローしているユーザーを取得する
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.followers
+  end
 
 end

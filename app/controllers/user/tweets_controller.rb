@@ -7,7 +7,9 @@ class User::TweetsController < ApplicationController
     
     # following_tweetsメソッドを呼び出して結果をログに出力
     @following_tweets = following_tweets
-
+    @user = current_user
+    @followers = @user.followers
+    
     
   end
 
@@ -33,6 +35,7 @@ class User::TweetsController < ApplicationController
     tweet.destroy
     redirect_to tweets_path
   end
+
 
   def following_tweets
     @following_users = current_user.following_users

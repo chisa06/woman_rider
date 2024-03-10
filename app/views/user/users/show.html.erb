@@ -75,14 +75,23 @@
             <div class="container">
               <ul class="navbar-nav mx-auto d-flex flex-row justify-content-center">
                 <li class="nav-item">
-                  <a class="nav-link text-center px-5" href="#" id="allTweets">フォロー</a>
+                  <a class="nav-link text-center px-5" href="#" id="followingUsers">フォロー</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-center px-5" href="#" id="followingTweets">フォロワー</a>
+                  <a class="nav-link text-center px-5" href="#" id="followersUsers">フォロワー</a>
                 </li>
               </ul>
             </div>
           </nav>
+          
+          <div id="followList">
+            <div id="followingUsersContent">
+              <%= render 'user/users/following', users: @user %>
+            </div>
+            <div id="followersUsersContent">
+              <%= render 'user/users/followers', users: @user %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -110,5 +119,26 @@
     // 初期表示では「つぶやき」が選択されているようにする
     $('#userTweets').addClass('selected-link');
     $('#likeTweetsContent').hide(); // 初期表示ではフォローツイートを非表示にする
+    
+    $('#followingUsers').click(function(e) {
+      e.preventDefault();
+      $('.nav-link').removeClass('selected-link'); // すべてのリンクから選択クラスを削除
+      $(this).addClass('selected-link'); // クリックされたリンクに選択クラスを追加
+      $('#followersUsersContent').hide(); // フォロワーのコンテンツを非表示にする
+      $('#followingUsersContent').show(); // フォローのコンテンツを表示する
+    });
+
+    $('#followersUsers').click(function(e) {
+      e.preventDefault();
+      $('.nav-link').removeClass('selected-link'); // すべてのリンクから選択クラスを削除
+      $(this).addClass('selected-link'); // クリックされたリンクに選択クラスを追加
+      $('#followingUsersContent').hide(); // フォローのコンテンツを非表示にする
+      $('#followersUsersContent').show(); // フォロワーのコンテンツを表示する
+    });
+
+    // 以下の部分を追加
+    // 初期表示では「つぶやき」が選択されているようにする
+    $('#followingUsers').addClass('selected-link');
+    $('#followersUsersContent').hide(); // 初期表示ではフォロワーツイートを非表示にする
   });
 </script>

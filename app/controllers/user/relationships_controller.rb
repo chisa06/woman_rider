@@ -7,14 +7,13 @@ class User::RelationshipsController < ApplicationController
   end
   
   def destroy
-    user = User.find(params[:user_id])
+    user = User.find(params[:id]) # リレーションシップを持つユーザーのIDを取得
     current_user.unfollow(user)
-    redirect_to  request.referer
+    redirect_to request.referer
   end
   
-  def followings
-    user = User.find(params[:user_id])
-    @users = user.followings
+  def following?(other_user)
+    relationships.find_by(followed_id: other_user.id).present?
   end
   
   def followers

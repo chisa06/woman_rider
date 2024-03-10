@@ -27,7 +27,9 @@ class User < ApplicationRecord
   end
   
   def follow(user)
-    active_relationships.create(followed_id: user.id)
+    unless self == user
+      active_relationships.create(followed_id: user.id)
+    end
   end
   
   def unfollow(user)
