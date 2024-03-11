@@ -23,9 +23,16 @@ class User::TweetsController < ApplicationController
       @tweets = Tweet.all.page(params[:page])
       render :index
     end
+    
+    tweet = Tweet.find(params[:tweet_id])
+    comment = current_user.comments.new(comment_params)
+    comment.tweet_id = tweet.id
+    comment.save
+    redirect_to tweet_path(tweet)
   end
 
   def show
+    @user = current_user
     @tweet = Tweet.find(params[:id])
     @comment = Comment.new
   end
@@ -50,6 +57,10 @@ class User::TweetsController < ApplicationController
 
   def tweet_params
     params.require(:tweet).permit(:content, :image, :user_id)
+  end
+  
+  def comment_params
+    params.require(:comment).permit(:comment)
   end
   
 end
