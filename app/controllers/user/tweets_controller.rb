@@ -10,31 +10,42 @@ class User::TweetsController < ApplicationController
     @user = current_user
     @followers = @user.followers
     
-    
+    @comment = Comment.new
   end
 
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
+    
     if @tweet.save
       flash[:notice] = 'You have created book successfully.'
-      redirect_to tweets_path
+      
+      comment_content = params[:tweet][:comment]
+      unless comment_content.blank?
+        comment = @tweet.comments.new(comment: comment_content)
+        comment.user_id = current_user.id
+        if comment.save
+          flash[:notice] = 'You have created comment successfully.'
+        else
+          flash[:alert] = 'Failed to create comment.'
+        end
+      end
+      
+      redirect_to tweets_path(@tweet)
     else
       @tweets = Tweet.all.page(params[:page])
-      render :index
+      render 'tweets/index'
     end
-    
-    tweet = Tweet.find(params[:tweet_id])
-    comment = current_user.comments.new(comment_params)
-    comment.tweet_id = tweet.id
-    comment.save
-    redirect_to tweet_path(tweet)
   end
 
   def show
     @user = current_user
     @tweet = Tweet.find(params[:id])
     @comment = Comment.new
+  end
+  
+  def edit
+    @tweet = Tweet.find(params[:id])
   end
 
   def destroy
