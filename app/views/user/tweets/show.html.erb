@@ -18,9 +18,9 @@
                 <div>
                   <% if @tweet.liked_by?(current_user) %>
                     <p>
-                      <%= link_to tweet_like_path(tweet), method: :delete do %>
+                      <%= link_to tweet_like_path(@tweet), method: :delete do %>
                         <i class="fa-solid fa-heart"></i>
-                        <span class="like-count"><%= tweet.likes.count %></span>
+                        <span class="like-count"><%= @tweet.likes.count %></span>
                       <% end %>
                     </p>
                   <% else %>

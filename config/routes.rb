@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   root to: 'homes#top'
-  get "search" => "searches#search"
+  
   
   # 管理者用
   devise_for :admin, skip: [:registrations ], controllers: {
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   
   scope module: :user do
     get 'user/:id' => 'users#show', as: 'user'
+    get "search" => "searches#search"
     resources :tweets, only: [:index, :create, :show, :destroy, :edit] do
       resource :like, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
