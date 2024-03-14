@@ -19,7 +19,9 @@
               </div>
               <% else %>
               <!-- フォローボタンとDMボタンを表示する -->
+                <%= render "user/direct_messages/direct_message", user: @user, options: { class: ""} %>
                 <%= render "user/relationships/btn", user: @user, options: { class: ""} %>
+
               <% end %>
             </div>
         </div>
@@ -56,7 +58,7 @@
               </ul>
             </div>
           </nav>
-          
+
           <div id="tweetList">
             <div id="userTweetsContent">
               <%= render 'user/users/user_tweets', tweets: @tweets %>
@@ -83,7 +85,7 @@
               </ul>
             </div>
           </nav>
-          
+
           <div id="followList">
             <div id="followingUsersContent">
               <%= render 'user/users/following', users: @user %>
@@ -119,7 +121,7 @@
     // 初期表示では「つぶやき」が選択されているようにする
     $('#userTweets').addClass('selected-link');
     $('#likeTweetsContent').hide(); // 初期表示ではフォローツイートを非表示にする
-    
+
     $('#followingUsers').click(function(e) {
       e.preventDefault();
       $('.nav-link').removeClass('selected-link'); // すべてのリンクから選択クラスを削除
