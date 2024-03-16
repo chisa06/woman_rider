@@ -1,21 +1,26 @@
-<table class="table table-hover table-inverse">
-  <!--検索対象モデルがUserの時 -->
-  <% if @range == "User" %>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user.username %></td>
-        </tr>
+<!-- 検索対象モデルがUserの時 -->
+<div class="container px-5 px-sm-0">
+  <div style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px; border-radius: 10px; margin-bottom: 20px;">
+    <% if @range == "User" %>
+      <% if @users.present? %>
+        <% @users.each do |user| %>
+          <%= image_tag user.get_profile_image(50,50), style: "border-radius: 50%; width: 50px; height: 50px;" %>
+          <div class="ml-3"><%= user.username %></div>
+        <% end %>
+      <% else %>
+        <p>No users found.</p>
       <% end %>
-    </tbody>
-  <% else %>
-    <!--検索対象モデルがUserではない時(= 検索対象モデルがTweetの時) -->
-    <tbody>
-      <% @tweets.each do |tweet| %>
-        <tr>
-          <td><%= tweet.content %></td>
-        </tr>
+    <% else %>
+      <!-- 検索対象モデルがUserではない時(= 検索対象モデルがTweetの時) -->
+      <% if @tweets.present? %>
+        <% @tweets.each do |tweet| %>
+          <% user = tweet.user %>
+          <%= image_tag user.get_profile_image(50,50), style: "border-radius: 50%; width: 50px; height: 50px;" %>
+          <%= tweet.content %>
+        <% end %>
+      <% else %>
+        <p>No tweets found.</p>
       <% end %>
-    </tbody>
-  <% end %>
-</table>
+    <% end %>
+  </div>
+</div>

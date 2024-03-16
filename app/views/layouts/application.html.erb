@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/af3ebb2bca.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
@@ -29,11 +29,11 @@
               </div>
               <div class="col">
                 <div class="search_form">
-                  <%= form_with url: search_path, local: true, method: :get do |f| %>
+                  <%= form_with url: searches_path, method: :get do |f| %>
                     <%= f.text_field :word %>
                     <%= f.select :range, options_for_select([['User'], ['Tweet']]) %>
-                    <%= f.select :serch, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],["後方一致","backward_match"],["部分一致","partial_match"]]) %>
-                    <%= link_to search_path(@search_params), class: 'btn btn-dark' do %>
+                    <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],["後方一致","backward_match"],["部分一致","partial_match"]]) %>
+                    <%= button_tag type: "submit", class: 'btn btn-dark' do %>
                       <i class="fa-solid fa-magnifying-glass"></i>
                     <% end %>
                   <% end %>

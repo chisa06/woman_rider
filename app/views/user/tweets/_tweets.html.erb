@@ -7,7 +7,7 @@
                     <% else %>
                       <%= image_tag 'bike_noimage.jpg' %>
                     <% end %>
-                    <div class="ml-3"><%= tweet.user.username %></div>
+                    <div class="ml-3"><%= link_to tweet.user.username, user_path(tweet.user) %></div>
                   </div>
                   <div class="mt-2 mb-4 ml-5"><%= tweet.content %></div>
                   <div style="display: flex; justify-content: flex-start;">

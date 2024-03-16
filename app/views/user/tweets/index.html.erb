@@ -29,7 +29,7 @@
               </ul>
             </div>
           </nav>
-          
+
           <div id="tweetList">
             <div id="allTweetsContent">
               <%= render 'user/tweets/tweets', tweets: @tweets %>
@@ -56,7 +56,7 @@
               </ul>
             </div>
           </nav>
-          
+
           <div id="followList">
             <div id="followingUsersContent">
               <%= render 'user/users/following', users: @user %>
@@ -92,7 +92,7 @@
     // 初期表示では「つぶやき」が選択されているようにする
     $('#allTweets').addClass('selected-link');
     $('#followingTweetsContent').hide(); // 初期表示ではフォローツイートを非表示にする
-    
+
     $('#followingUsers').click(function(e) {
       e.preventDefault();
       $('.nav-link').removeClass('selected-link'); // すべてのリンクから選択クラスを削除
