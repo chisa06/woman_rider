@@ -1,4 +1,4 @@
-<% if @liked_tweets.any? %>
+<% if @user.present? && @user.likes.present? %>
   <% @liked_tweets.each do |tweet| %>
               <div class="tweet-container">
                 <%= link_to tweet_path(tweet.id), class: 'tweet-link' do %>

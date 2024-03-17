@@ -107,6 +107,7 @@
       $(this).addClass('selected-link'); // クリックされたリンクに選択クラスを追加
       $('#followingTweetsContent').hide(); // フォローのコンテンツを非表示にする
       $('#userTweetsContent').show(); // つぶやきのコンテンツを表示する
+      $('#likeTweetsContent').find('p').hide(); // いいねのコンテンツ内のメッセージを非表示にする
     });
 
     $('#likeTweets').click(function(e) {
@@ -115,6 +116,11 @@
       $(this).addClass('selected-link'); // クリックされたリンクに選択クラスを追加
       $('#userTweetsContent').hide(); // つぶやきのコンテンツを非表示にする
       $('#likeTweetsContent').show(); // フォローのコンテンツを表示する
+      if ($('#likeTweetsContent').find('.like-container').length == 0) {
+        $('#likeTweetsContent').find('p').show(); // いいねのコンテンツ内のメッセージを表示する
+      } else {
+        $('#likeTweetsContent').find('p').hide(); // いいねのコンテンツ内のメッセージを非表示にする
+      }
     });
 
     // 以下の部分を追加

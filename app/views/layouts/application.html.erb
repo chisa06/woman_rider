@@ -20,7 +20,11 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-warning">
         <div class="container">
           <a class="navbar-brand p-3" href="/"><%= image_tag('logo.png', size: '100x50') %></a>
-            <% if user_signed_in? %>
+            <% if admin_signed_in? %>
+              <li class="nav-item bg-dark rounded p-2 m-2">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "text-light" %>
+              </li>
+            <% elsif user_signed_in? %>
               <div style="align-items: center;">
                 <%= link_to user_path(current_user) do %>
                   <%= image_tag current_user.get_profile_image(50, 50), style: "border-radius: 50%; width: 50px; height: 50px;" %>
@@ -46,7 +50,7 @@
                 <li class="nav-item bg-dark rounded p-2 m-2">
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-light" %>
                 </li>
-              <% else %>
+            <% else %>
                 <div class="text-right" style="display: inline-flex;">
                   <li class="nav-item bg-dark rounded p-2 m-2">
                     <%= link_to "新規登録", new_user_registration_path, class: "text-light" %>
@@ -55,7 +59,7 @@
                     <%= link_to "ログイン", new_user_session_path, class: "text-light" %>
                   </li>
                 </div>
-              <% end %>
+            <% end %>
             </ul>
           </div>
         </div>
