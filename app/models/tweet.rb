@@ -7,6 +7,13 @@ class Tweet < ApplicationRecord
   def liked_by?(user)
     likes.exists?(user_id: user.id)
   end
+  
+  # 画像のリサイズメソッド
+  def resized_image(width)
+    if image.attached?
+      image.variant(resize_to_fit: [width, nil])
+    end
+  end
 
   def self.search_tweets(search, word)
     if search == "perfect_match"

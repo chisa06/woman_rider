@@ -7,9 +7,9 @@
             <%= f.text_area :content, placeholder: "投稿できます", style: "border: none; width: 100%;", class: "no-resize" %>
           </div>
           <div class="space-between">
-            <%= f.label :picture, class: "image-upload-button" do %>
+            <%= f.label :image, class: "image-upload-button" do %>
               <i class="far fa-image"></i>
-              <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', style: "display: none;" %>
+              <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', style: "display: none;" %>
             <% end %>
             <%= f.submit "投稿", class: "btn btn-dark", style: "float: right;" %>
           </div>
@@ -113,5 +113,15 @@
     // 初期表示では「つぶやき」が選択されているようにする
     $('#followingUsers').addClass('selected-link');
     $('#followersUsersContent').hide(); // 初期表示ではフォロワーツイートを非表示にする
+    
+    // ツイート要素全体にクリックイベントを追加
+    $('.tweet-container').click(function() {
+      // ツイート要素内のリンクに対するクリックは処理しない
+      if ($(event.target).is('a')) {
+        return;
+      }
+      // ツイート詳細ページに遷移
+      window.location.href = $(this).find('.tweet-link').attr('href');
+    });
   });
 </script>

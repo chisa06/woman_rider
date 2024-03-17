@@ -67,6 +67,10 @@
     outline: none; /* フォーカス時の枠線を削除 */
   }
 
+ .user-link {
+    cursor: pointer;
+ }
+
 .like-count {
     margin-left: 5px
 }
@@ -102,4 +106,8 @@
 }
 .panel.is-show{
   display:block;
+}
+
+.content_image{
+  max-width: 500;
 }

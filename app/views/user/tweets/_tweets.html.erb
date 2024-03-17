@@ -7,9 +7,16 @@
                     <% else %>
                       <%= image_tag 'bike_noimage.jpg' %>
                     <% end %>
-                    <div class="ml-3"><%= link_to tweet.user.username, user_path(tweet.user) %></div>
+                    <div class="ml-3">
+                      <%= link_to tweet.user.username, user_path(tweet.user), class: 'user-link' %>
+                    </div>
                   </div>
                   <div class="mt-2 mb-4 ml-5"><%= tweet.content %></div>
+                  <div class="ml-3 mb-3">
+                    <% if tweet.image.attached? %>
+                      <%= image_tag tweet.image.variant(resize_to_fit: [100, 100]), style: "max-width: 100%; max-height: 300px;" %>
+                    <% end %>
+                  </div>
                   <div style="display: flex; justify-content: flex-start;">
                     <div>
                       <% if tweet.liked_by?(current_user) %>

@@ -17,6 +17,10 @@ class User::TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
     
+    if params[:tweet][:image].present?
+      @tweet.image.attach(params[:tweet][:image])
+    end
+    
     if @tweet.save
       flash[:notice] = 'You have created book successfully.'
       
