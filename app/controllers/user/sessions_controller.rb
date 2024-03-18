@@ -2,7 +2,7 @@
 
 class User::SessionsController < Devise::SessionsController
   #before_action :configure_sign_in_params, only: [:create]
-
+  before_action :user_state, only: [:create]
   # GET /resource/sign_in
   # def new
   #   super
@@ -31,6 +31,14 @@ class User::SessionsController < Devise::SessionsController
   
   def after_sign_out_path_for(resource)
     root_path
+  end
+  
+  private
+  
+  def user_state
+    user = User.find_by(email: params[:user][:email])
+    return if user.nil?
+    return unless user.valid_password?(params[:user][:password])
   end
  
 end

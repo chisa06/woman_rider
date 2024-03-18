@@ -8,6 +8,12 @@ class User::CommentsController < ApplicationController
     redirect_to tweet_path(tweet)
   end
   
+  def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
+    redirect_to tweets_path
+  end
+  
   private
 
   def comment_params

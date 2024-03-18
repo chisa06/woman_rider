@@ -64,7 +64,12 @@ class User::RegistrationsController < Devise::RegistrationsController
   end
   
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :profile_image])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :introduction, :profile_image])
+  end
+  
+  def destroy
+    current_user.direct_messages.destroy_all
+    super
   end
 
   # The path used after sign up for inactive accounts.
