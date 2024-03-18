@@ -105,9 +105,8 @@
       e.preventDefault();
       $('.nav-link').removeClass('selected-link'); // すべてのリンクから選択クラスを削除
       $(this).addClass('selected-link'); // クリックされたリンクに選択クラスを追加
-      $('#followingTweetsContent').hide(); // フォローのコンテンツを非表示にする
+      $('#likeTweetsContent').hide(); // いいねのコンテンツを非表示にする
       $('#userTweetsContent').show(); // つぶやきのコンテンツを表示する
-      $('#likeTweetsContent').find('p').hide(); // いいねのコンテンツ内のメッセージを非表示にする
     });
 
     $('#likeTweets').click(function(e) {
@@ -115,18 +114,13 @@
       $('.nav-link').removeClass('selected-link'); // すべてのリンクから選択クラスを削除
       $(this).addClass('selected-link'); // クリックされたリンクに選択クラスを追加
       $('#userTweetsContent').hide(); // つぶやきのコンテンツを非表示にする
-      $('#likeTweetsContent').show(); // フォローのコンテンツを表示する
-      if ($('#likeTweetsContent').find('.like-container').length == 0) {
-        $('#likeTweetsContent').find('p').show(); // いいねのコンテンツ内のメッセージを表示する
-      } else {
-        $('#likeTweetsContent').find('p').hide(); // いいねのコンテンツ内のメッセージを非表示にする
-      }
+      $('#likeTweetsContent').show(); // いいねのコンテンツを表示する
     });
 
     // 以下の部分を追加
     // 初期表示では「つぶやき」が選択されているようにする
     $('#userTweets').addClass('selected-link');
-    $('#likeTweetsContent').hide(); // 初期表示ではフォローツイートを非表示にする
+    $('#likeTweetsContent').hide(); // 初期表示ではいいねツイートを非表示にする
 
     $('#followingUsers').click(function(e) {
       e.preventDefault();
@@ -145,8 +139,18 @@
     });
 
     // 以下の部分を追加
-    // 初期表示では「つぶやき」が選択されているようにする
+    // 初期表示では「フォローユーザー」が選択されているようにする
     $('#followingUsers').addClass('selected-link');
-    $('#followersUsersContent').hide(); // 初期表示ではフォロワーツイートを非表示にする
+    $('#followersUsersContent').hide(); // 初期表示ではフォロワーを非表示にする
+    
+    // ツイート要素全体にクリックイベントを追加
+    $('.tweet-container').click(function() {
+      // ツイート要素内のリンクに対するクリックは処理しない
+      if ($(event.target).is('a')) {
+        return;
+      }
+      // ツイート詳細ページに遷移
+      window.location.href = $(this).find('.tweet-link').attr('href');
+    });
   });
 </script>
