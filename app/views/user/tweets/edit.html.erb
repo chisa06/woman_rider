@@ -1,0 +1,25 @@
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="container px-5 px-sm-0">
+      <div style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px; border-radius: 10px; margin-bottom: 20px;">
+        <div class="p-3">
+          <h2>ツイート編集</h2>
+          <div class="tweet-form">
+            <%= form_for(@tweet) do |f| %>
+              <div class="field">
+                <%= f.text_area :content, placeholder: "投稿できます", style: "border: none; width: 100%;", class: "no-resize" %>
+              </div>
+              <div class="space-between">
+                <%= f.label :image, class: "image-upload-button" do %>
+                  <i class="far fa-image"></i>
+                  <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', style: "display: none;" %>
+                <% end %>
+                <%= f.submit "投稿", class: "btn btn-dark", style: "float: right;" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

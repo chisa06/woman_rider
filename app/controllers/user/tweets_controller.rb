@@ -4,9 +4,11 @@ class User::TweetsController < ApplicationController
     @tweets = Tweet.all
     @tweet = Tweet.new
     @tweet.user_id = current_user.id if current_user
+    @tweets = Tweet.order(created_at: :desc)
     
     # following_tweetsメソッドを呼び出して結果をログに出力
     @following_tweets = following_tweets
+    @following_tweets = current_user.following_tweets.order(created_at: :desc)
     @user = current_user
     @followers = @user.followers
     
@@ -51,6 +53,12 @@ class User::TweetsController < ApplicationController
   def edit
     @tweet = Tweet.find(params[:id])
   end
+  
+  def update
+    tweet = Tweet.find(params[:id])
+    tweet.update(tweet_params)
+    redirect_to tweet_path(tweet.id)
+  end
 
   def destroy
     tweet = Tweet.find(params[:id])
@@ -76,6 +84,12 @@ class User::TweetsController < ApplicationController
   
   def comment_params
     params.require(:comment).permit(:comment)
+  end
+  
+  private
+  
+  def tweet_params
+    params.require(:tweet).permit(:content, :image)
   end
   
 end

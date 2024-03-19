@@ -26,4 +26,6 @@ class Tweet < ApplicationRecord
       Tweet.where("content LIKE ?", "%#{word}%")
     end
   end
+  
+  
 end

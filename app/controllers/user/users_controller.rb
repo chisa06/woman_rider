@@ -3,7 +3,7 @@ class User::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @tweet = Tweet.new
-    @tweets = @user.tweets
+    @tweets = @user.tweets.order(created_at: :desc)
     @liked_tweets = @user.likes.map(&:tweet)
     @following_users = @user.following_users
     @followers = @user.followers
