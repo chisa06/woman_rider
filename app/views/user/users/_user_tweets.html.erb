@@ -1,6 +1,6 @@
 <% if @user.present? && @user.tweets.any? %>
   <div style="display: flex; flex-direction: column;">
-    <% @user.tweets.each do |tweet| %>
+    <% @user.tweets.reverse_each do |tweet| %>
                   <div class="tweet-container">
                     <%= link_to tweet_path(tweet.id), class: 'tweet-link' do %>
                       <div style="display: flex; align-items: center;">
