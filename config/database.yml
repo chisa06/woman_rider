@@ -21,6 +21,7 @@ test:
   database: db/test.sqlite3
 
 production:
+  <<: *default
   adapter: mysql2
   encoding: utf8mb4
   charset: utf8mb4
@@ -28,4 +29,4 @@ production:
   host: <%= ENV['DB_HOST'] %>
   database: <%= ENV['DB_DATABASE'] %>
   username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
+  password: "<%= ENV['DB_PASSWORD'] %>"
