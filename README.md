@@ -22,7 +22,8 @@
 - イベント情報を知りたい時
 ​
 ## 設計書
-- 後ほど作成予定
+- 画面設計　https://drive.google.com/drive/folders/1upRC54quQMAt6mPqsq3X9gRL-upf8fCq?usp=drive_link
+- テーブル設計　https://docs.google.com/spreadsheets/d/1PoO3REnC3yeEYk6poFg35qKr7_wAEtDWDxk2SL-AiU0/edit#gid=1243549839
 - 実装機能リスト　https://docs.google.com/spreadsheets/d/1bbW9Ec-4oWb1bCPBImSLGfkC5mTJsLeUMTZHmTB1Qjs/edit?usp=sharing
 ​
 ## 開発環境
@@ -33,4 +34,6 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- 
+- designevo (https://www.designevo.com/jp/)
+- 写真AC (https://www.photo-ac.com/)
+- Font Awesome (https://fontawesome.com/)
